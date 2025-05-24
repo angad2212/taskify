@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,6 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { X } from 'lucide-react';
 import { mockUsers } from '@/data/mockData';
 
 interface CreateProjectModalProps {
@@ -18,32 +19,44 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
   const [description, setDescription] = useState('');
   const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
   const [bestCount, setBestCount] = useState(3);
+  const [skills, setSkills] = useState<string[]>([]);
+  const [currentSkill, setCurrentSkill] = useState('');
 
   const users = mockUsers.filter(user => user.role === 'user');
 
   const handleMemberToggle = (userId: string) => {
-    setSelectedMembers(prev => 
-      prev.includes(userId) 
+    setSelectedMembers(prev =>
+      prev.includes(userId)
         ? prev.filter(id => id !== userId)
         : [...prev, userId]
     );
   };
 
   const handleAddBest = () => {
-    // Mock logic to select best users
     const bestUsers = users.slice(0, bestCount).map(user => user.id);
     setSelectedMembers(bestUsers);
   };
 
+  const handleAddSkill = () => {
+    if (currentSkill.trim() && !skills.includes(currentSkill.trim())) {
+      setSkills(prev => [...prev, currentSkill.trim()]);
+      setCurrentSkill('');
+    }
+  };
+
+  const handleRemoveSkill = (skillToRemove: string) => {
+    setSkills(prev => prev.filter(skill => skill !== skillToRemove));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock project creation
-    console.log('Creating project:', { name, description, members: selectedMembers });
+    console.log('Creating project:', { name, description, members: selectedMembers, skills });
     onOpenChange(false);
-    // Reset form
     setName('');
     setDescription('');
     setSelectedMembers([]);
+    setSkills([]);
+    setCurrentSkill('');
   };
 
   return (
@@ -55,7 +68,7 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
             Set up a new project and assign team members
           </DialogDescription>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="project-name" className="text-white">Project Name</Label>
@@ -68,7 +81,7 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
               required
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="project-description" className="text-white">Description</Label>
             <Textarea
@@ -82,8 +95,41 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="skills" className="text-white">Skills</Label>
+            <div className="flex space-x-2">
+              <Input
+                id="skills"
+                value={currentSkill}
+                onChange={(e) => setCurrentSkill(e.target.value)}
+                className="bg-[#121212] border-gray-700 text-white flex-1"
+                placeholder="Add a skill"
+                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddSkill())}
+              />
+              <Button type="button" onClick={handleAddSkill} className="bg-[#4ea8de] hover:bg-[#3a8bc4]">
+                Add
+              </Button>
+            </div>
+            {skills.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {skills.map((skill) => (
+                  <Badge key={skill} variant="outline" className="border-gray-600 text-gray-300">
+                    {skill}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveSkill(skill)}
+                      className="ml-1 hover:text-red-400"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-2">
             <Label className="text-white">Team Members</Label>
-            
+
             <div className="flex gap-2 mb-3">
               <Input
                 type="number"
@@ -93,7 +139,7 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
                 max={users.length}
                 className="bg-[#121212] border-gray-700 text-white w-20"
               />
-              <Button 
+              <Button
                 type="button"
                 onClick={handleAddBest}
                 variant="outline"
@@ -121,14 +167,14 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
           </div>
 
           <div className="flex justify-end space-x-2 pt-4">
-            <Button 
-              type="button" 
+            <Button
+              type="button"
               onClick={() => onOpenChange(false)}
               className="bg-[#4ea8de] hover:bg-[#3a8bc4] text-white"
             >
               Cancel
             </Button>
-            <Button 
+            <Button
               type="submit"
               className="bg-[#4ea8de] hover:bg-[#3a8bc4] text-white"
             >
