@@ -12,7 +12,7 @@ export const mockProjects: Project[] = [
   {
     id: '1',
     name: 'E-commerce Website',
-    description: 'Build a modern e-commerce platform with React and Node.js',
+    description: 'Design an easy-to-use, attractive ecommerce website that reflects our brand. Ensure smooth navigation and reliable performance on all devices for a seamless shopping experience.',
     members: [mockUsers[1], mockUsers[2]],
     tasks: [],
     createdBy: '1',
@@ -21,7 +21,7 @@ export const mockProjects: Project[] = [
   {
     id: '2',
     name: 'Mobile App Design',
-    description: 'Design and prototype a new mobile application',
+    description: 'Design an intuitive and attractive mobile app that reflects our brand. Ensure smooth navigation and consistent performance across devices for a great user experience aligned with our product goals.',
     members: [mockUsers[3]],
     tasks: [],
     createdBy: '1',

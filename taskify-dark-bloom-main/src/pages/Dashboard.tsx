@@ -1,4 +1,3 @@
-
 import { useAuth } from '@/contexts/AuthContext';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -59,7 +58,15 @@ const Dashboard = () => {
             <Card key={project.id} className="bg-[#1e1e1e] border-gray-800 hover:border-gray-700 transition-colors">
               <CardHeader>
                 <CardTitle className="text-white">{project.name}</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription 
+                  className="text-gray-400"
+                  style={{
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                  }}
+                >
                   {project.description}
                 </CardDescription>
               </CardHeader>
