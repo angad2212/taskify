@@ -97,7 +97,7 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
                 type="button"
                 onClick={handleAddBest}
                 variant="outline"
-                className="border-gray-700 text-white hover:bg-gray-800"
+                className="bg-purple-600 text-white hover:bg-purple-700 border-purple-700 hover:text-white"
               >
                 Add Best {bestCount}
               </Button>
@@ -123,9 +123,8 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
           <div className="flex justify-end space-x-2 pt-4">
             <Button 
               type="button" 
-              variant="outline" 
               onClick={() => onOpenChange(false)}
-              className="border-gray-700 text-white hover:bg-gray-800"
+              className="bg-[#4ea8de] hover:bg-[#3a8bc4] text-white"
             >
               Cancel
             </Button>

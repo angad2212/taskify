@@ -171,7 +171,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, projectId,
           </div>
 
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose} className="border-gray-600 text-gray-300 hover:bg-gray-800">
+            <Button type="button" onClick={onClose} className="bg-[#4ea8de] hover:bg-[#3a8bc4] text-white">
               Cancel
             </Button>
             <Button type="submit" className="bg-[#4ea8de] hover:bg-[#3a8bc4] text-white">
