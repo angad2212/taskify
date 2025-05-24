@@ -37,6 +37,11 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
     setSelectedMembers(bestUsers);
   };
 
+  const handleAddSpecialists = () => {
+    // Add your logic here
+    console.log('Add Specialists clicked');
+  };
+
   const handleAddSkill = () => {
     if (currentSkill.trim() && !skills.includes(currentSkill.trim())) {
       setSkills(prev => [...prev, currentSkill.trim()]);
@@ -145,7 +150,16 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ open, onOpenCha
                 variant="outline"
                 className="bg-purple-600 text-white hover:bg-purple-700 border-purple-700 hover:text-white"
               >
-                Add Best {bestCount}
+                Add Best
+              </Button>
+
+              <Button
+                type="button"
+                onClick={handleAddSpecialists}
+                variant="outline"
+                className="bg-purple-600 text-white hover:bg-purple-700 border-purple-700 hover:text-white"
+              >
+                Add Specialists
               </Button>
             </div>
 
