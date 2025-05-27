@@ -26,6 +26,13 @@ const Navbar = () => {
               <Link to="/analytics">Analytics</Link>
             </Button>
           )}
+
+          {/* Ask TaskGPT button */}
+          <Button
+            className="bg-purple-600 hover:bg-purple-700 rounded-md text-sm px-3 py-1 text-white"
+          >
+            Ask TaskGPT
+          </Button>
           
           <Button 
             onClick={logout}

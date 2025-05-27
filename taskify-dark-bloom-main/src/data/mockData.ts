@@ -27,6 +27,42 @@ export const mockProjects: Project[] = [
     createdBy: '1',
     createdAt: new Date('2024-01-20'),
   },
+  {
+    id: '3',
+    name: 'Marketing Campaign Strategy',
+    description: 'Develop a creative and data-driven marketing campaign to increase brand awareness and drive conversions. Align content across platforms and track performance metrics closely.',
+    members: [mockUsers[1], mockUsers[2]],
+    tasks: [],
+    createdBy: '1',
+    createdAt: new Date('2024-01-15'),
+  },
+  {
+    id: '4',
+    name: 'Customer Feedback Analysis',
+    description: 'Analyze customer feedback and reviews to identify pain points and opportunities for product improvement. Generate actionable insights and present them to the product team.',
+    members: [mockUsers[1], mockUsers[2]],
+    tasks: [],
+    createdBy: '1',
+    createdAt: new Date('2024-01-15'),
+  },
+  {
+    id: '5',
+    name: 'Website SEO Optimization',
+    description: 'Improve the SEO of our website to increase organic traffic. Conduct keyword research, optimize meta tags, and enhance site performance in search engine rankings.',
+    members: [mockUsers[1], mockUsers[2]],
+    tasks: [],
+    createdBy: '1',
+    createdAt: new Date('2024-01-15'),
+  },
+  {
+    id: '6',
+    name: 'New Feature Development',
+    description: 'Design and develop a new feature for the web platform based on customer feedback. Ensure thorough testing, proper documentation, and a smooth deployment process.',
+    members: [mockUsers[1], mockUsers[2]],
+    tasks: [],
+    createdBy: '1',
+    createdAt: new Date('2024-01-15'),
+  }
 ];
 
 export const mockTasks: Task[] = [
